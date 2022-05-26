@@ -12,6 +12,7 @@ class GitHub{
         return fetch(this.#endpoint + login).then((response) => {
         if (response.status === 200) {
             return response.json()
+
         }
         return Promise.reject(response.status)
         })
@@ -45,11 +46,16 @@ git
 }
 
 function renderData(data){
-    containerE.innerHTML = data.repos_url;
-    containerE.innerHTML = data.public_repos;
-    containerE.innerHTML = data.avatar_url;
+    containerE.innerHTML = data.public_repos + data.avatar_url   ;
+
+    cleaning()
 }
 
 function renderError(e){
     errorE.innerHTML = ERROR[e];
+    cleaning()
+}
+
+function cleaning(){
+    inpE.value = ''
 }
